@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 def fetch_nhk_news(keyword=None):
-    url = "https://www3.nhk.or.jp/news/" if not keyword else f"https://www3.nhk.or.jp/news/search/?q={keyword}"
+    # キーワードが渡されない場合はトップページを取得
+    url = f"https://www3.nhk.or.jp/news/" if not keyword else f"https://www3.nhk.or.jp/news/search/?q={keyword}"
     
     try:
         headers = {
@@ -10,6 +11,11 @@ def fetch_nhk_news(keyword=None):
         }
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
+
+        # 404 エラーが返ってきたら、処理を中止する
+        if response.status_code == 404:
+            print(f"エラー: キーワード「{keyword}」の検索結果が見つかりませんでした。")
+            return []
 
         soup = BeautifulSoup(response.content, "html.parser")
         articles = []
@@ -30,7 +36,7 @@ def fetch_nhk_news(keyword=None):
                 if not link.startswith("http"):
                     link = f"https://www3.nhk.or.jp{link}"
                 articles.append({'title': title, 'link': link})
-        
+
         print(f"取得できた記事数: {len(articles)}")
         return articles
 
