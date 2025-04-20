@@ -27,7 +27,7 @@ document.getElementById("fetch-news").addEventListener("click", async () => {
   document.getElementById("search-news").addEventListener("click", async () => {
     const source = document.getElementById("source").value;
     const keyword = document.getElementById("keyword").value;
-    const url = `http://localhost:8000/news/?source=${source}&keyword=${keyword}`;
+    const url = `https://news-api-run5.onrender.com/news/?source=${source}&keyword=${keyword}`;
   
     try {
         // API呼び出し
