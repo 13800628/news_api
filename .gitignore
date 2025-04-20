@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Test coverage reports
+htmlcov/
+coverage.xml
+*.cover
+
+# Docker
+*.db
+*.pid
+*.sock
+*.tar
+
+# dotenv
+.env
+.env.*
+
+# FastAPI cache
+*.db
+
+# System files
+Thumbs.db
